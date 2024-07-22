@@ -1,6 +1,6 @@
 # Weather Data Streaming and Dashboard
 
-This project demonstrates how to stream weather data using Kafka, store it in PostgreSQL, and visualize it in real-time using a Dash web application.
+This project demonstrates how to stream generated weather data using Kafka, store it in PostgreSQL, and visualize it in real-time using a Dash web application.
 
 ## Project Structure
 

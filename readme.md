@@ -15,13 +15,4 @@ This project demonstrates how to stream weather data using Kafka, store it in Po
 - Python 3.x
 - `pip` (Python package installer)
 
- 
-
-Create a .env file in the root directory with the following content:
-
-KAFKA_BROKER=localhost:9092
-KAFKA_TOPIC=weather_data
-KAFKA_GROUP_ID=weather_consumer_group
-DATABASE_URL=postgresql+psycopg2://{username}:{password}@postgres/{database}
-UPDATE_INTERVAL=5000
-MESSAGE_FREQUENCY=1
+Change .env.example to a .env file in the root directory  

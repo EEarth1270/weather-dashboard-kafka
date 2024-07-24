@@ -16,3 +16,6 @@ This project demonstrates how to stream weather data using Kafka, store it in Po
 - `pip` (Python package installer)
 
 Change .env.example to a .env file in the root directory  
+
+latlong data from https://github.com/spicydog/thailand-province-district-subdistrict-zipcode-latitude-longitude/tree/master
+Weather API using https://openweathermap.org/ 

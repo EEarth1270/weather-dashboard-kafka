@@ -1,0 +1,44 @@
+{
+ "coord": {
+  "lon": 97.8804,
+  "lat": 18.2181
+ },
+ "weather": [
+  {
+   "id": 804,
+   "main": "Clouds",
+   "description": "overcast clouds",
+   "icon": "04d"
+  }
+ ],
+ "base": "stations",
+ "main": {
+  "temp": 24.12,
+  "feels_like": 25.17,
+  "temp_min": 24.12,
+  "temp_max": 24.12,
+  "pressure": 1002,
+  "humidity": 99,
+  "sea_level": 1002,
+  "grnd_level": 960
+ },
+ "visibility": 7963,
+ "wind": {
+  "speed": 1.35,
+  "deg": 208,
+  "gust": 4.25
+ },
+ "clouds": {
+  "all": 100
+ },
+ "dt": 1721810265,
+ "sys": {
+  "country": "TH",
+  "sunrise": 1721775829,
+  "sunset": 1721822750
+ },
+ "timezone": 25200,
+ "id": 7302488,
+ "name": "Pa Pae",
+ "cod": 200
+}

@@ -31,8 +31,8 @@ app.layout = html.Div([
             'Nakhon Si Thammarat', 'Krabi', 'Phangnga', 'Phuket', 'Surat Thani', 'Ranong', 'Chumphon', 'Songkhla', 'Satun',
             'Trang', 'Phatthalung', 'Pattani', 'Yala', 'Narathiwat'
         ]],
-        multi=False,
-        placeholder="Select a city"
+        multi=True,
+        placeholder="Select cities"
     ),
     dcc.Graph(id='live-update-graph'),
     dcc.Interval(
@@ -43,9 +43,9 @@ app.layout = html.Div([
 ])
 
 # Configuration
-weather_db = os.getenv('WEATHER_DB', 'postgres')
-username = os.getenv('DB_USERNAME', 'postgres')
-password = os.getenv('DB_PASSWORD', 'admin')
+weather_db = os.getenv('WEATHER_DB')
+username = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
 host = os.getenv('DB_HOST', 'localhost')
 database_url = f'postgresql+psycopg2://{username}:{password}@{host}/{weather_db}'
 # Create SQLAlchemy engine
@@ -54,7 +54,7 @@ engine = sqlalchemy.create_engine(database_url)
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals'),
                Input('city-dropdown', 'value')])
-def update_graph_live(n, selected_city):
+def update_graph_live(n, selected_cities):
     try:
         # Use SQLAlchemy engine to read data into pandas DataFrame
         query = "SELECT * FROM weather_data ORDER BY timestamp DESC LIMIT 43200"
@@ -67,10 +67,11 @@ def update_graph_live(n, selected_city):
         df['timestamp'] = pd.to_datetime(df['timestamp'], unit='s' ).dt.tz_localize('UTC').dt.tz_convert(bangkok_tz) 
 
         # Filter by selected city
-        if selected_city:
-            df = df[df['city'] == selected_city]
-            
-        fig = px.scatter(df, x='timestamp', y='temperature', color='city')
+        if selected_cities:
+            df = df[df['city'].isin(selected_cities)]
+
+        fig = px.line(df, x='timestamp', y='temperature', color='city' ,markers=True,text="temperature")
+        fig.update_traces(textposition="bottom right")
         fig.update_layout(
             yaxis_title='Temperature (°C)'
             ,xaxis_title='Time (seconds)'

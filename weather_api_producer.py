@@ -49,8 +49,10 @@ def call_api_prepare_msg(api_key, call_api, request_api, province, district, lat
     real_feel = response_data['main']['feels_like'] 
     name_api = response_data['name']
     timestamp = response_data['dt']
+    lat= response_data['coord']['lat']
+    lon= response_data['coord']['lon']
     message = {'city': province,'district': district, 'cross_check_name':name_api, 'temperature': temp, 'real_feel':real_feel, 
-               'timestamp': timestamp,'cross_check_name':name_api}
+               'timestamp': timestamp,'cross_check_name':name_api,'lat':lat,'long':lon}
     return message
 
 def produce_message(message):
